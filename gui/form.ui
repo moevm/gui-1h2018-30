@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Величайшая программа 21 века</string>
   </property>
   <widget class="QLabel" name="label_8">
    <property name="geometry">
@@ -52,11 +52,11 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="addEpisode">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>60</y>
+     <x>360</x>
+     <y>50</y>
      <width>131</width>
      <height>41</height>
     </rect>
@@ -65,13 +65,13 @@
     <string>Добавить сериал</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
      <y>50</y>
-     <width>291</width>
-     <height>451</height>
+     <width>321</width>
+     <height>501</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -91,20 +91,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Сериал 1 сезон 2
-6 серий</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Сериал 2 сезон 1
-0 серий</string>
-        </property>
-       </widget>
+       <widget class="QListWidget" name="serials"/>
       </item>
      </layout>
     </item>
@@ -145,7 +132,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>590</x>
@@ -171,7 +158,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>590</x>
@@ -220,7 +207,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>590</x>
@@ -242,7 +229,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>590</x>

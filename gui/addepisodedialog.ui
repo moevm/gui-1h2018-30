@@ -1,63 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>AddEpisodeDialog</class>
+ <widget class="QDialog" name="AddEpisodeDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>741</width>
-    <height>552</height>
+    <width>646</width>
+    <height>523</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Добавить новый сериал</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>490</y>
-     <width>93</width>
-     <height>28</height>
+     <x>10</x>
+     <y>20</y>
+     <width>571</width>
+     <height>31</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Сохранить</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>230</y>
-     <width>231</width>
-     <height>34</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="label">
       <property name="text">
-       <string>Сколько серий просмотрено?
-(Число, введённое цифрами)</string>
+       <string>Название</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-        <horstretch>32</horstretch>
-        <verstretch>32</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
-      </property>
+     <widget class="QLineEdit" name="name">
       <property name="text">
        <string/>
       </property>
@@ -65,11 +39,11 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>110</y>
+     <x>10</x>
+     <y>80</y>
      <width>231</width>
      <height>34</height>
     </rect>
@@ -84,7 +58,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="season">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
         <horstretch>32</horstretch>
@@ -104,33 +78,76 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget_3">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>40</y>
-     <width>571</width>
-     <height>31</height>
+     <x>10</x>
+     <y>200</y>
+     <width>231</width>
+     <height>34</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_4">
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="label_3">
       <property name="text">
-       <string>Название</string>
+       <string>Сколько серий просмотрено?
+(Число, введённое цифрами)</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_3"/>
+     <widget class="QLineEdit" name="seriesWatched">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>32</horstretch>
+        <verstretch>32</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget_4">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>290</y>
+     <x>10</x>
+     <y>150</y>
+     <width>169</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Просмотрен полностью?</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="isAlreadyWatched">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>260</y>
      <width>251</width>
      <height>181</height>
     </rect>
@@ -144,31 +161,31 @@
      </widget>
     </item>
     <item>
-     <widget class="QTextEdit" name="textEdit"/>
+     <widget class="QPlainTextEdit" name="comment"/>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>180</y>
-     <width>169</width>
-     <height>18</height>
+     <x>10</x>
+     <y>470</y>
+     <width>158</width>
+     <height>25</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_3">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QLabel" name="label_2">
+     <widget class="QPushButton" name="OK">
       <property name="text">
-       <string>Просмотрен полностью?</string>
+       <string>Добавить</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QCheckBox" name="checkBox">
+     <widget class="QPushButton" name="Cancel">
       <property name="text">
-       <string/>
+       <string>Отмена</string>
       </property>
      </widget>
     </item>

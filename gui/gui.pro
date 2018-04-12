@@ -1,12 +1,19 @@
 SOURCES += \
     main.cpp \
-    form.cpp
+    form.cpp \
+    addepisodedialog.cpp \
+    serial.cpp
 
 QT += widgets
 
 FORMS += \
     form.ui \
-    dialog.ui
+    addepisodedialog.ui
 
 HEADERS += \
-    form.h
+    form.h \
+    addepisodedialog.h \
+    serial.h
+
+DISTFILES += \
+    usersData

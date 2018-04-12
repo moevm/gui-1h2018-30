@@ -15,8 +15,15 @@ public:
     explicit Form(QWidget *parent = 0);
     ~Form();
 
+private slots:
+    void on_addEpisode_clicked();
+
 private:
     Ui::Form *ui;
 };
+
+
+
+
 
 #endif // FORM_H
