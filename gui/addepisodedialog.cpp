@@ -29,25 +29,24 @@ void AddEpisodeDialog::on_Cancel_clicked()
 }
 
 
-void AddEpisodeDialog::accept() {
-    std::ofstream fout("C:\\Users\\maxim\\Desktop\\gui\\usersData", std::ios::app);
+void AddEpisodeDialog::accept()
+{
 
-    std::string string;
-    string.append(ui->name->text().toStdString());
-    string.append("\n");
-    string.append(ui->season->text().toStdString());
-    string.append("\n");
-    ui->isAlreadyWatched->checkState() ? string.append("already watched") : string.append("has not already watched");
-    string.append("\n");
-    string.append(ui->seriesWatched->text().toStdString());
-    string.append("\n");
-    string.append(ui->comment->toPlainText().toStdString());
-    string.append("\n");
-    string.append("commentend");
-    string.append("\n");
-    fout << string;
+    Serials serials;
+    //Serial serial(ui->name->text().toStdString(), ui->season->text().toInt(), ui->isAlreadyWatched->checkState(), ui->seriesWatched->text().toInt(), ui->comment->toPlainText().toStdString());
 
-    fout.close();
+    Serial serial;
+    serial.name = ui->name->text().toStdString();
+    serial.season = ui->season->text().toInt();
+    serial.isAlreadyWatched = ui->isAlreadyWatched->checkState();
+    serial.howMuchWatched = ui->seriesWatched->text().toInt();
+    serial.comment = ui->comment->toPlainText().toStdString();
+
+    serials.add(serial);
+
+    /*
+
+    */
 
     this->close();
 }

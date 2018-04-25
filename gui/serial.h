@@ -2,18 +2,19 @@
 #define SERIAL_H
 
 #include <string>
+#include <vector>
 
 class Serial
 {
 
-private:
+public:
     std::string name;
     int season;
     bool isAlreadyWatched;
     int howMuchWatched;
     std::string comment;
 
-public:
+
     Serial();
     Serial(std::string name, int season, bool isAlreadyWatched, int howMuchWatched, std::string comment);
 };

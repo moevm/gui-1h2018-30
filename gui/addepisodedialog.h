@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QLabel>
+#include "serials.h"
 
 namespace Ui {
 class AddEpisodeDialog;

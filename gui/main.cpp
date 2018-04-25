@@ -1,5 +1,8 @@
 #include <QApplication>
 #include "form.h"
+#include "serials.h"
+
+//Serials serials;
 
 int main(int argc, char *argv[])
 {

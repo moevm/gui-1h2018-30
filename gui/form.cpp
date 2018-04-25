@@ -20,42 +20,26 @@ Form::~Form()
 
 void Form::on_addEpisode_clicked()
 {
+    Serials serials;
     AddEpisodeDialog* a = new AddEpisodeDialog(this);
+
+
     a->exec();
+    ui->serialsUnwatched->clear();
+    ui->serialsWatched->clear();
 
-    char name[64];
-    int season;
-    bool isAlreadyWatched;
-    int seriesWatched;
-    char comment[1024];
+    std::string aboutSerial;
 
-    char tmp[32];
+    for (int i = 0; i < serials.size; i++) {
+        aboutSerial += serials.serials[i].name;
+        aboutSerial += " сезон ";
+        aboutSerial += std::to_string(serials.serials[i].season);
 
-    char aboutSerial[2048];
-
-    std::ifstream fin("C:\\Users\\maxim\\Desktop\\gui\\usersData");
-    /*
-    while (!fin.eof()) {
-        fin.getline(name, 64);
-        fin >> season;
-        fin.getline(tmp, 32);
-        strcmp(tmp, "already watched") ? isAlreadyWatched = true : isAlreadyWatched = false;                  // ОЧЕНЬ ОПАСНОЕ МЕСТО
-        fin >> seriesWatched;                                                                                 // И ОНО НЕ РАБОТАЕТ
-        //(isAlreadyWatched == true) ? std::cout << "true" : std::cout << "false";
-        fin.getline(comment, 1024);
-        strcat(name, (char*)&season);
+        if (!serials.serials[i].isAlreadyWatched) {
+            ui->serialsUnwatched->addItem(QString::fromStdString(aboutSerial));
+        } else {
+            ui->serialsWatched->addItem(QString::fromStdString(aboutSerial));
+        }
+        aboutSerial = "";
     }
-    */
-
-    fin.getline(name, 64);
-    fin >> season;
-
-    strcat(aboutSerial, name);
-    strcat(aboutSerial, " сезон ");
-    sprintf(tmp, "%d", season);
-    strcat(aboutSerial, tmp); // просто привести к массиву чаров
-
-    ui->serials->addItem(aboutSerial);
-
-    fin.close();
 }
