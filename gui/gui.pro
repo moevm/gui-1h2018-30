@@ -19,3 +19,5 @@ HEADERS += \
 
 DISTFILES += \
     usersData.txt
+
+# qmake variables указать версию компилятора

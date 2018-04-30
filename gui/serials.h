@@ -7,8 +7,19 @@ class Serials
 {
 public:
     static int size;
-    static std::vector<Serial> serials;
-    static void add(Serial serial);
+    static int sizeOfWatchedSerials;
+    static int sizeOfUnwatchedSerials;
+
+    // static std::vector<Serial> serials;
+
+    static std::vector<Serial> watchedSerials;
+    static std::vector<Serial> unwatchedSerials;
+
+    // static void add(Serial serial);
+
+    static void addWatchedSerial(Serial serial);
+    static void addUnwatchedSerial(Serial serial);
+
     Serials();
 };
 

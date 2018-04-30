@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "serial.h"
 
 AddEpisodeDialog::AddEpisodeDialog(QWidget *parent) :
     QDialog(parent),
@@ -33,7 +34,6 @@ void AddEpisodeDialog::accept()
 {
 
     Serials serials;
-    //Serial serial(ui->name->text().toStdString(), ui->season->text().toInt(), ui->isAlreadyWatched->checkState(), ui->seriesWatched->text().toInt(), ui->comment->toPlainText().toStdString());
 
     Serial serial;
     serial.name = ui->name->text().toStdString();
@@ -42,11 +42,16 @@ void AddEpisodeDialog::accept()
     serial.howMuchWatched = ui->seriesWatched->text().toInt();
     serial.comment = ui->comment->toPlainText().toStdString();
 
-    serials.add(serial);
 
-    /*
+    Serial newSerial(serial.name, serial.season, serial.isAlreadyWatched, serial.howMuchWatched, serial.comment);
 
-    */
+    // serials.add(serial);
+
+    if (serial.isAlreadyWatched) {
+        serials.addWatchedSerial(newSerial);
+    } else {
+        serials.addUnwatchedSerial(newSerial);
+    }
 
     this->close();
 }

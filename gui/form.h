@@ -2,6 +2,7 @@
 #define FORM_H
 
 #include <QWidget>
+#include <QListWidgetItem>
 #include "serials.h"
 
 namespace Ui {
@@ -18,6 +19,12 @@ public:
 
 private slots:
     void on_addEpisode_clicked();
+
+    void on_serialsUnwatched_itemClicked(QListWidgetItem *item);
+
+    void on_serialsWatched_itemClicked(QListWidgetItem *item);
+
+    void on_checkBox_stateChanged(int arg1);
 
 private:
     Ui::Form *ui;
