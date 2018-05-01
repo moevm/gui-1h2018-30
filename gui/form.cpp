@@ -5,14 +5,136 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <QFile>
+#include <QDebug>
 
 Form::Form(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Form) {
-    ui->setupUi(this);
+
+        QFile file("myfile.txt");
+        Serials serials;
+
+        if (file.open(QIODevice::ReadOnly)) {
+            Serial currentSerial;
+
+            std::string name;
+            int season;
+            std::string howMuchWatchedStr;
+            std::string seasonStr;
+            bool isAlreadyWatched;
+            int howMuchWatched;
+            std::string comment;
+            std::string temp;
+
+            while (!file.atEnd()) {
+                name = file.readLine().toStdString();
+
+                if (name.size() > 0) {
+                    name.erase(name.size() - 1);
+                }
+
+                seasonStr = file.readLine().toStdString();
+                season = std::stoi(seasonStr);
+
+
+                if (std::stoi(file.readLine().toStdString()) == 1) {
+                    isAlreadyWatched = true;
+                } else {
+                    isAlreadyWatched = false;
+                }
+
+
+                howMuchWatchedStr = file.readLine().toStdString();
+                howMuchWatched = std::stoi(howMuchWatchedStr);
+
+
+
+                do {
+                    temp = file.readLine().toStdString();
+                    if (temp[0] == '@') {
+                        break;
+                    }
+                    comment.append(temp);
+                } while (file.canReadLine());
+
+                currentSerial = Serial(name, season, isAlreadyWatched, howMuchWatched, comment);
+
+                if (currentSerial.isAlreadyWatched) {
+                    serials.addWatchedSerial(currentSerial);
+                } else {
+                    serials.addUnwatchedSerial(currentSerial);
+                }
+            }
+            file.close();
+        } else {
+            std::cerr << "Error: file was not opened" << std::endl;
+        }
+
+        ui->setupUi(this);
+
+        ui->serialsUnwatched->clear();
+        ui->serialsWatched->clear();
+
+        std::string aboutSerial;
+
+        for (int i = 0; i < serials.sizeOfWatchedSerials; i++) {
+            aboutSerial += serials.watchedSerials[i].name;
+            aboutSerial += " сезон ";
+            aboutSerial += std::to_string(serials.watchedSerials[i].season);
+
+            ui->serialsWatched->addItem(QString::fromStdString(aboutSerial));
+
+            aboutSerial = "";
+        }
+
+        for (int i = 0; i < serials.sizeOfUnwatchedSerials; i++) {
+            aboutSerial += serials.unwatchedSerials[i].name;
+            aboutSerial += " сезон ";
+            aboutSerial += std::to_string(serials.unwatchedSerials[i].season);
+
+            ui->serialsUnwatched->addItem(QString::fromStdString(aboutSerial));
+
+            aboutSerial = "";
+        }
 }
 
 Form::~Form() {
+    Serials serials;
+
+    QFile file("myfile.txt");
+
+    if (file.open(QIODevice::WriteOnly)) {
+        for (int i = 0; i < serials.sizeOfWatchedSerials; i++) {
+            file.write(QByteArray::fromStdString(serials.watchedSerials[i].name));
+            file.write("\n");
+            file.write(QByteArray::fromStdString(std::to_string(serials.watchedSerials[i].season)));
+            file.write("\n");
+            file.write(QByteArray::fromStdString("1"));
+            file.write("\n");
+            file.write(QByteArray::fromStdString(std::to_string(serials.watchedSerials[i].howMuchWatched)));
+            file.write("\n");
+            file.write(QByteArray::fromStdString(serials.watchedSerials[i].comment));
+            file.write("\n");
+            file.write(QByteArray::fromStdString("@"));
+            file.write("\n");
+        }
+
+        for (int i = 0; i < serials.sizeOfUnwatchedSerials; i++) {
+            file.write(QByteArray::fromStdString(serials.unwatchedSerials[i].name));
+            file.write("\n");
+            file.write(QByteArray::fromStdString(std::to_string(serials.unwatchedSerials[i].season)));
+            file.write("\n");
+            file.write(QByteArray::fromStdString("0"));
+            file.write("\n");
+            file.write(QByteArray::fromStdString(std::to_string(serials.unwatchedSerials[i].howMuchWatched)));
+            file.write("\n");
+            file.write(QByteArray::fromStdString(serials.unwatchedSerials[i].comment));
+            file.write("\n");
+            file.write(QByteArray::fromStdString("@"));
+            file.write("\n");
+        }
+    }
     delete ui;
 }
 
