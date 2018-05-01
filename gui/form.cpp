@@ -55,6 +55,8 @@ void Form::on_serialsUnwatched_itemClicked(QListWidgetItem *item) {
     serials.indexOfUnwatched = currentRow;
     serials.indexOfWatched = -1;
 
+
+
     Serial currentSerial = serials.unwatchedSerials[currentRow];
 
     ui->label_8->setText(QString::fromStdString(currentSerial.name));
@@ -81,8 +83,17 @@ void Form::on_serialsWatched_itemClicked(QListWidgetItem *item) {
 
 void Form::on_checkBox_stateChanged(int arg1) {
     // arg1 = 0, если нажат, 2 если не нажат
+
     Serials serials;
     Serial currentSerial;
+
+    if (arg1 == 0 && serials.indexOfWatched < 0) {
+        return;
+    }
+
+    if (arg1 == 2 && serials.indexOfUnwatched < 0) {
+        return;
+    }
 
     if (serials.indexOfUnwatched >= 0) {
         currentSerial = serials.unwatchedSerials[serials.indexOfUnwatched];
@@ -103,7 +114,6 @@ void Form::on_checkBox_stateChanged(int arg1) {
     } else {
         return;
     }
-
 
     ui->serialsUnwatched->clear();
     ui->serialsWatched->clear();
