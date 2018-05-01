@@ -45,8 +45,6 @@ void AddEpisodeDialog::accept()
 
     Serial newSerial(serial.name, serial.season, serial.isAlreadyWatched, serial.howMuchWatched, serial.comment);
 
-    // serials.add(serial);
-
     if (serial.isAlreadyWatched) {
         serials.addWatchedSerial(newSerial);
     } else {

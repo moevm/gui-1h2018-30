@@ -152,7 +152,7 @@
     <item>
      <widget class="QLabel" name="label_10">
       <property name="text">
-       <string>6 серий</string>
+       <string>Серия 6</string>
       </property>
      </widget>
     </item>

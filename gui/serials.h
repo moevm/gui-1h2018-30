@@ -9,6 +9,8 @@ public:
     static int size;
     static int sizeOfWatchedSerials;
     static int sizeOfUnwatchedSerials;
+    static int indexOfWatched;
+    static int indexOfUnwatched;
 
     // static std::vector<Serial> serials;
 
