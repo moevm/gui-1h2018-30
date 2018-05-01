@@ -215,18 +215,11 @@
     <rect>
      <x>590</x>
      <y>490</y>
-     <width>381</width>
+     <width>101</width>
      <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4">
-    <item>
-     <widget class="QPushButton" name="pushButton_save">
-      <property name="text">
-       <string>Сохранить</string>
-      </property>
-     </widget>
-    </item>
     <item>
      <widget class="QPushButton" name="pushButton_delete">
       <property name="text">

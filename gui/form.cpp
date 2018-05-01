@@ -91,14 +91,14 @@ void Form::on_checkBox_stateChanged(int arg1) {
         serials.sizeOfUnwatchedSerials--;
         serials.addWatchedSerial(currentSerial);
         serials.indexOfUnwatched = -1;
-        serials.indexOfWatched = -1;
+        serials.indexOfWatched = serials.sizeOfWatchedSerials - 1;
     } else if (serials.indexOfWatched >= 0) {
         currentSerial = serials.watchedSerials[serials.indexOfWatched];
         currentSerial.isAlreadyWatched = true;
         serials.watchedSerials.erase(serials.watchedSerials.begin() + serials.indexOfWatched);
         serials.sizeOfWatchedSerials--;
         serials.addUnwatchedSerial(currentSerial);
-        serials.indexOfUnwatched = -1;
+        serials.indexOfUnwatched = serials.sizeOfUnwatchedSerials - 1;
         serials.indexOfWatched = -1;
     } else {
         return;
@@ -208,59 +208,6 @@ void Form::on_pushButton_delete_clicked() {
     }
 }
 
-void Form::on_pushButton_save_clicked() {
-    Serials serials;
-    int season = std::stoi(ui->label_9->text().remove(0, 6).toStdString());
-    int howMuchWatched = std::stoi(ui->label_10->text().remove(0, 6).toStdString());
-    bool isWatched = ui->checkBox->isChecked();
-    std::string comment = ui->textEdit->toPlainText().toStdString();
-    Serial currentSerial = Serial(ui->label_8->text().toStdString(), season, isWatched, howMuchWatched, comment);
-    if (serials.indexOfWatched >= 0) {
-        serials.watchedSerials.erase(serials.watchedSerials.begin() + serials.indexOfWatched);
-        serials.sizeOfWatchedSerials--;
-        if (currentSerial.isAlreadyWatched) {
-            serials.addWatchedSerial(currentSerial);
-        } else {
-            serials.addUnwatchedSerial(currentSerial);
-        }
-    } else if (serials.indexOfUnwatched >= 0) {
-        serials.unwatchedSerials.erase(serials.unwatchedSerials.begin() + serials.indexOfUnwatched);
-        serials.sizeOfUnwatchedSerials--;
-        if (currentSerial.isAlreadyWatched) {
-            serials.addWatchedSerial(currentSerial);
-        } else {
-            serials.addUnwatchedSerial(currentSerial);
-        }
-    } else {
-        return;
-    }
-
-
-    ui->serialsUnwatched->clear();
-    ui->serialsWatched->clear();
-
-    std::string aboutSerial;
-
-    for (int i = 0; i < serials.sizeOfWatchedSerials; i++) {
-        aboutSerial += serials.watchedSerials[i].name;
-        aboutSerial += " сезон ";
-        aboutSerial += std::to_string(serials.watchedSerials[i].season);
-
-        ui->serialsWatched->addItem(QString::fromStdString(aboutSerial));
-
-        aboutSerial = "";
-    }
-
-    for (int i = 0; i < serials.sizeOfUnwatchedSerials; i++) {
-        aboutSerial += serials.unwatchedSerials[i].name;
-        aboutSerial += " сезон ";
-        aboutSerial += std::to_string(serials.unwatchedSerials[i].season);
-
-        ui->serialsUnwatched->addItem(QString::fromStdString(aboutSerial));
-
-        aboutSerial = "";
-    }
-}
 
 void Form::on_textEdit_textChanged()
 {

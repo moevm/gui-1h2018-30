@@ -12,12 +12,8 @@ public:
     static int indexOfWatched;
     static int indexOfUnwatched;
 
-    // static std::vector<Serial> serials;
-
     static std::vector<Serial> watchedSerials;
     static std::vector<Serial> unwatchedSerials;
-
-    // static void add(Serial serial);
 
     static void addWatchedSerial(Serial serial);
     static void addUnwatchedSerial(Serial serial);
