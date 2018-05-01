@@ -26,6 +26,10 @@ private slots:
 
     void on_checkBox_stateChanged(int arg1);
 
+    void on_pushButton_minus_clicked();
+
+    void on_pushButton_plus_clicked();
+
 private:
     Ui::Form *ui;
 };

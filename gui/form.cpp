@@ -86,3 +86,84 @@ void Form::on_checkBox_stateChanged(int arg1)
 {
     // arg1 = 0, если нажат, 2 если не нажат
 }
+
+void Form::on_pushButton_minus_clicked()
+{
+    Serials serials;
+    Serial currentSerial;
+    int indexOfWatched = -1;
+    int indexOfUnwatched = -1;
+    for (int i = 0; i < serials.sizeOfUnwatchedSerials; i++) {
+        if (serials.unwatchedSerials[i].name == ui->label_8->text().toStdString() &&
+                "Сезон " + std::to_string(serials.unwatchedSerials[i].season) == ui->label_9->text().toStdString() &&
+                "Серия " + std::to_string(serials.unwatchedSerials[i].howMuchWatched) == ui->label_10->text().toStdString() ) {
+            currentSerial = serials.unwatchedSerials[i];
+            indexOfUnwatched = i;
+            std::cout << currentSerial.name << std::endl;
+            break;
+        }
+    }
+
+    for (int i = 0; i < serials.sizeOfWatchedSerials; i++) {
+        if (serials.watchedSerials[i].name == ui->label_8->text().toStdString() &&
+                "Сезон " + std::to_string(serials.watchedSerials[i].season) == ui->label_9->text().toStdString() &&
+                "Серия " + std::to_string(serials.watchedSerials[i].howMuchWatched) == ui->label_10->text().toStdString() ) {
+            currentSerial = serials.watchedSerials[i];
+            indexOfWatched = i;
+            std::cout << currentSerial.name << std::endl;
+            break;
+        }
+    }
+
+    if (currentSerial.howMuchWatched > 0) {
+        if (indexOfUnwatched >= 0) {
+            serials.unwatchedSerials[indexOfUnwatched].howMuchWatched--;
+            currentSerial.howMuchWatched--;
+        }
+        if (indexOfWatched >= 0) {
+            serials.watchedSerials[indexOfWatched].howMuchWatched--;
+            currentSerial.howMuchWatched--;
+        }
+
+        ui->label_10->setText(QString::fromStdString("Серия " + std::to_string(currentSerial.howMuchWatched)));
+    }
+}
+
+void Form::on_pushButton_plus_clicked()
+{
+    Serials serials;
+    Serial currentSerial;
+    int indexOfWatched = -1;
+    int indexOfUnwatched = -1;
+    for (int i = 0; i < serials.sizeOfUnwatchedSerials; i++) {
+        if (serials.unwatchedSerials[i].name == ui->label_8->text().toStdString() &&
+                "Сезон " + std::to_string(serials.unwatchedSerials[i].season) == ui->label_9->text().toStdString() &&
+                "Серия " + std::to_string(serials.unwatchedSerials[i].howMuchWatched) == ui->label_10->text().toStdString() ) {
+            currentSerial = serials.unwatchedSerials[i];
+            indexOfUnwatched = i;
+            break;
+        }
+    }
+
+    for (int i = 0; i < serials.sizeOfWatchedSerials; i++) {
+        if (serials.watchedSerials[i].name == ui->label_8->text().toStdString() &&
+                "Сезон " + std::to_string(serials.watchedSerials[i].season) == ui->label_9->text().toStdString() &&
+                "Серия " + std::to_string(serials.watchedSerials[i].howMuchWatched) == ui->label_10->text().toStdString() ) {
+            currentSerial = serials.watchedSerials[i];
+            indexOfWatched = i;
+            break;
+        }
+    }
+
+
+    if (indexOfUnwatched >= 0) {
+        serials.unwatchedSerials[indexOfUnwatched].howMuchWatched++;
+        currentSerial.howMuchWatched++;
+    }
+    if (indexOfWatched >= 0) {
+        serials.watchedSerials[indexOfWatched].howMuchWatched++;
+        currentSerial.howMuchWatched++;
+    }
+
+    ui->label_10->setText(QString::fromStdString("Серия " + std::to_string(currentSerial.howMuchWatched)));
+}
