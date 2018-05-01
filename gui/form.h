@@ -29,6 +29,7 @@ private slots:
     void on_pushButton_minus_clicked();
 
     void on_pushButton_plus_clicked();
+    void on_pushButton_delete_clicked();
 
 private:
     Ui::Form *ui;

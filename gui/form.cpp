@@ -99,7 +99,6 @@ void Form::on_pushButton_minus_clicked()
                 "Серия " + std::to_string(serials.unwatchedSerials[i].howMuchWatched) == ui->label_10->text().toStdString() ) {
             currentSerial = serials.unwatchedSerials[i];
             indexOfUnwatched = i;
-            std::cout << currentSerial.name << std::endl;
             break;
         }
     }
@@ -110,7 +109,6 @@ void Form::on_pushButton_minus_clicked()
                 "Серия " + std::to_string(serials.watchedSerials[i].howMuchWatched) == ui->label_10->text().toStdString() ) {
             currentSerial = serials.watchedSerials[i];
             indexOfWatched = i;
-            std::cout << currentSerial.name << std::endl;
             break;
         }
     }
@@ -166,4 +164,66 @@ void Form::on_pushButton_plus_clicked()
     }
 
     ui->label_10->setText(QString::fromStdString("Серия " + std::to_string(currentSerial.howMuchWatched)));
+}
+
+void Form::on_pushButton_delete_clicked()
+{
+    Serials serials;
+    Serial currentSerial;
+    int indexOfWatched = -1;
+    int indexOfUnwatched = -1;
+    for (int i = 0; i < serials.sizeOfUnwatchedSerials; i++) {
+        if (serials.unwatchedSerials[i].name == ui->label_8->text().toStdString() &&
+                "Сезон " + std::to_string(serials.unwatchedSerials[i].season) == ui->label_9->text().toStdString() &&
+                "Серия " + std::to_string(serials.unwatchedSerials[i].howMuchWatched) == ui->label_10->text().toStdString() ) {
+            currentSerial = serials.unwatchedSerials[i];
+            indexOfUnwatched = i;
+            break;
+        }
+    }
+
+    for (int i = 0; i < serials.sizeOfWatchedSerials; i++) {
+        if (serials.watchedSerials[i].name == ui->label_8->text().toStdString() &&
+                "Сезон " + std::to_string(serials.watchedSerials[i].season) == ui->label_9->text().toStdString() &&
+                "Серия " + std::to_string(serials.watchedSerials[i].howMuchWatched) == ui->label_10->text().toStdString() ) {
+            currentSerial = serials.watchedSerials[i];
+            indexOfWatched = i;
+            break;
+        }
+    }
+
+    if (indexOfUnwatched >= 0) {
+        serials.unwatchedSerials.erase(serials.unwatchedSerials.begin() + indexOfUnwatched);
+        serials.sizeOfUnwatchedSerials--;
+    }
+
+    if (indexOfWatched >= 0) {
+        serials.watchedSerials.erase(serials.watchedSerials.begin() + indexOfWatched);
+        serials.sizeOfWatchedSerials--;
+    }
+
+    ui->serialsUnwatched->clear();
+    ui->serialsWatched->clear();
+
+    std::string aboutSerial;
+
+    for (int i = 0; i < serials.sizeOfWatchedSerials; i++) {
+        aboutSerial += serials.watchedSerials[i].name;
+        aboutSerial += " сезон ";
+        aboutSerial += std::to_string(serials.watchedSerials[i].season);
+
+        ui->serialsWatched->addItem(QString::fromStdString(aboutSerial));
+
+        aboutSerial = "";
+    }
+
+    for (int i = 0; i < serials.sizeOfUnwatchedSerials; i++) {
+        aboutSerial += serials.unwatchedSerials[i].name;
+        aboutSerial += " сезон ";
+        aboutSerial += std::to_string(serials.unwatchedSerials[i].season);
+
+        ui->serialsUnwatched->addItem(QString::fromStdString(aboutSerial));
+
+        aboutSerial = "";
+    }
 }
