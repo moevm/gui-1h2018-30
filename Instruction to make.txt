@@ -1,0 +1,5 @@
+git clone https://github.com/moevm/gui-1h2018-30
+sudo apt-get install qt5-default
+cd gui-1h2018-30/gui
+qmake && make
+./gui
