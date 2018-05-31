@@ -20,4 +20,6 @@ HEADERS += \
 DISTFILES += \
     usersData.txt
 
+QMAKE_CXXFLAGS += -std=c++0x
+
 # qmake variables указать версию компилятора
